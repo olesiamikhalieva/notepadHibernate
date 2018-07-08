@@ -34,5 +34,7 @@
     <input type="submit" name="add" value="add">
     <input type="submit" name="del" value="del">
 </form>
+<br>
+<h3>${errorPhone}</h3>
 </body>
 </html>

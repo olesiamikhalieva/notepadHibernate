@@ -38,12 +38,7 @@ public class Person {
     }
 
     public void setPhone(String phone) {
-        Pattern p = Pattern.compile("^\\+380\\d{9}$");
-        Matcher m = p.matcher(phone);
-        if (m.matches()==false) {
-            System.out.println("Number in not ukrainian");
-        } else {
-         this.phone = phone;
-        }
+        this.phone = phone;
     }
 }
+
