@@ -36,4 +36,14 @@ public class NotepadDaoImpl implements NotepadDao {
     public void delete(Notepad notepad) {
         sessionFactory.getCurrentSession().delete(notepad);
     }
+
+    @Override
+    public void deleteById(long id) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query query = currentSession.createQuery("delete Notepad where id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+    }
+
+
 }

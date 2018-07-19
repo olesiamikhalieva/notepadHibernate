@@ -11,7 +11,9 @@ public interface NotepadService {
 
     void addPersonToNotepadList(Notepad notepad);
 
-    void deletePersonFromNotepadList(Notepad notepad);
+    void deletePersonFromNotepadList(Notepad person);
+
+    void deletePersonFromNotepadListById(long id);
 
     List<Notepad> modifyNotepadList();
 }

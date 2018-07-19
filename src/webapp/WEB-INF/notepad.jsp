@@ -7,12 +7,14 @@
 <body>
 <table border="2">
     <tr>
+        <th>id</th>
         <th>name</th>
         <th>surname</th>
         <th>phone</th>
     </tr>
 <c:forEach var="note" items="${notepadList}">
 <tr>
+    <td>${note.id}</td>
     <td>${note.name}</td>
     <td>${note.surname}</td>
     <td>${note.phone}</td>
@@ -34,6 +36,13 @@
     <input type="submit" name="add" value="add">
     <input type="submit" name="del" value="del">
 </form>
+<form action="/deleteById" method="get">
+    <br>
+    ID:
+    <input type="text" name="id">
+    <input type="submit" name="del" value="delByID">
+</form>
+
 <br>
 <h3>${errorPhone}</h3>
 </body>

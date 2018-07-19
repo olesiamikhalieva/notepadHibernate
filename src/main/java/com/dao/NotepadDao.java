@@ -9,4 +9,5 @@ public interface NotepadDao {
     List<Notepad> notepadList();
     void add(Notepad notepad);
     void delete(Notepad notepad);
+    void deleteById(long id);
 }

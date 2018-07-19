@@ -20,8 +20,13 @@ public class NotepadServiceImpl implements NotepadService{
     }
 
     @Override
-    public void deletePersonFromNotepadList(Notepad notepad) {
-        notepadDao.delete(notepad);
+    public void deletePersonFromNotepadList(Notepad person){
+        notepadDao.delete(person);
+    }
+
+    @Override
+    public void deletePersonFromNotepadListById(long id) {
+        notepadDao.deleteById(id);
     }
 
     @Override

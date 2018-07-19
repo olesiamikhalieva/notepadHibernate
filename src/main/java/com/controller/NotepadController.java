@@ -56,11 +56,15 @@ public class NotepadController {
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public String deleteNote() {
         errorMessage=null;
-        if (CheckData.checkPhone(note) == 0) {
             notepadService.deletePersonFromNotepadList(note);
-        } else {
-            errorMessage = "Phone number is wrong!";
-        }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "deleteById", method = RequestMethod.GET)
+    public String deleteNoteById(HttpServletRequest request) {
+        errorMessage=null;
+        long id = Long.parseLong(request.getParameter("id"));
+        notepadService.deletePersonFromNotepadListById(id);
         return "redirect:/";
     }
 
