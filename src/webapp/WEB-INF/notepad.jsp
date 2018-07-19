@@ -11,16 +11,16 @@
         <th>surname</th>
         <th>phone</th>
     </tr>
-<c:forEach var="person" items="${notepadList}">
+<c:forEach var="note" items="${notepadList}">
 <tr>
-    <td>${person.name}</td>
-    <td>${person.surname}</td>
-    <td>${person.phone}</td>
+    <td>${note.name}</td>
+    <td>${note.surname}</td>
+    <td>${note.phone}</td>
 </tr>
 </c:forEach>
 </table>
 <br>
-<form action="/modify" method="get" modelAttribute="person">
+<form action="/modify" method="get" modelAttribute="notepad">
     <br>
     Name:
     <input type="text" name="name">

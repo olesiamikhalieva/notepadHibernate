@@ -1,11 +1,12 @@
 package com.dao;
 
-import com.model.Person;
+
+import com.entity.Notepad;
 
 import java.util.List;
 
 public interface NotepadDao {
-    List<Person> notepadList();
-    void add(Person person);
-    void delete(Person person);
+    List<Notepad> notepadList();
+    void add(Notepad notepad);
+    void delete(Notepad notepad);
 }

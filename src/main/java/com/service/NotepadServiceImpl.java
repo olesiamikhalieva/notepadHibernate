@@ -1,36 +1,36 @@
 package com.service;
 
 import com.dao.NotepadDao;
-import com.model.Person;
+import com.entity.Notepad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class NotepadServiceImpl implements NotepadService{
 
     @Autowired
     private NotepadDao notepadDao;
 
+
     @Override
-    public List<Person> notepadList() {
+    public List<Notepad> notepadList() {
         return notepadDao.notepadList();
     }
 
     @Override
-    public List<Person> notepadListModify() {
-            List<Person> notepadList = notepadDao.notepadList();
-            return notepadList;
+    public void deletePersonFromNotepadList(Notepad notepad) {
+        notepadDao.delete(notepad);
     }
+
     @Override
-    public List<Person> addPersonToNotepadList(Person person){
-        notepadDao.add(person);
-        List<Person> notepadList = notepadDao.notepadList();
-        return notepadList;
-    }
-    @Override
-    public List<Person> deletePersonFromNotepadList(Person person){
-        notepadDao.delete(person);
+    public List<Notepad> modifyNotepadList() {
         return notepadDao.notepadList();
+    }
+
+    @Override
+    public void addPersonToNotepadList(Notepad notepad) {
+        notepadDao.add(notepad);
     }
 }

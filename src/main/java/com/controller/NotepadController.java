@@ -1,7 +1,7 @@
 package com.controller;
 
 import com.checkData.CheckData;
-import com.model.Person;
+import com.entity.Notepad;
 import com.service.NotepadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/")
 public class NotepadController {
-    private String errorMessage=null;
+    private String errorMessage = null;
+    private Notepad note;
 
     @Autowired
     private NotepadService notepadService;
@@ -24,23 +25,44 @@ public class NotepadController {
     @RequestMapping(method = RequestMethod.GET)
     public String getNotepadList(Model model) {
         model.addAttribute("notepadList", notepadService.notepadList());
-        model.addAttribute("notepadListModify", notepadService.notepadListModify());
+        model.addAttribute("notepadListModify", notepadService.modifyNotepadList());
         model.addAttribute("errorPhone", errorMessage);
         return "notepad";
     }
 
     @RequestMapping(value = "modify", method = RequestMethod.GET)
-    public String serviceStudent(@ModelAttribute Person person, HttpServletRequest req) {
-        if (CheckData.checkPhone(person) == 0) {
-            if (req.getParameter("add") != null) {
-                notepadService.addPersonToNotepadList(person);
-            }
-            if (req.getParameter("del") != null) {
-                notepadService.deletePersonFromNotepadList(person);
-            }
-        } else {
-           errorMessage="Phone number is wrong!";
+    public String serviceStudent(@ModelAttribute Notepad person, HttpServletRequest req) {
+        note=person;
+        if (req.getParameter("add") != null) {
+            return "redirect:/add";
+        }
+        if (req.getParameter("del") != null) {
+            return "redirect:/delete";
         }
         return "redirect:/";
     }
+
+    @RequestMapping(value = "add", method = RequestMethod.GET)
+    public String addNote() {
+        errorMessage=null;
+        if (CheckData.checkPhone(note) == 0) {
+            notepadService.addPersonToNotepadList(note);
+        } else {
+            errorMessage = "Phone number is wrong!";
+        }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public String deleteNote() {
+        errorMessage=null;
+        if (CheckData.checkPhone(note) == 0) {
+            notepadService.deletePersonFromNotepadList(note);
+        } else {
+            errorMessage = "Phone number is wrong!";
+        }
+        return "redirect:/";
+    }
+
+
 }

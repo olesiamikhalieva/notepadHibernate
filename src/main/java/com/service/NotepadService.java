@@ -1,16 +1,17 @@
 package com.service;
 
 
-import com.model.Person;
+import com.entity.Notepad;
+
 import java.util.List;
 
 public interface NotepadService {
 
-    List<Person> notepadList();
+    List<Notepad> notepadList();
 
-    List<Person> notepadListModify();
+    void addPersonToNotepadList(Notepad notepad);
 
-    List<Person> addPersonToNotepadList(Person person);
+    void deletePersonFromNotepadList(Notepad notepad);
 
-    List<Person> deletePersonFromNotepadList(Person person);
+    List<Notepad> modifyNotepadList();
 }
